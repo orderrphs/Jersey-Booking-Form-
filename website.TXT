@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jersey Booking Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    max-width: 480px;
+    margin: auto;
+    background: #f7f7f7;
+  }
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #aaa;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .options-group {
+    margin-top: 8px;
+  }
+  .options-group label {
+    margin-right: 15px;
+    font-weight: normal;
+  }
+  button {
+    margin-top: 20px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #219150;
+  }
+</style>
+</head>
+<body>
+
+<h2>Jersey Booking Form</h2>
+<form id="jerseyForm" onsubmit="return handleSubmit(event)">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+  <label for="size">Size:</label>
+  <div class="options-group" id="size">
+    <label><input type="radio" name="size" value="XS" required /> XS</label>
+    <label><input type="radio" name="size" value="S" /> S</label>
+    <label><input type="radio" name="size" value="M" /> M</label>
+    <label><input type="radio" name="size" value="L" /> L</label>
+    <label><input type="radio" name="size" value="XL" /> XL</label>
+    <label><input type="radio" name="size" value="XXL" /> XXL</label>
+    <label><input type="radio" name="size" value="XXXL" /> XXXL</label>
+  </div>
+
+  <label for="number">Jersey Number:</label>
+  <input type="number" id="number" name="number" min="0" max="99" placeholder="e.g. 10" required />
+
+  <label>Sleeve Type:</label>
+  <div class="options-group">
+    <label><input type="radio" name="sleeve" value="Half Sleeve" required /> Half Sleeve</label>
+    <label><input type="radio" name="sleeve" value="Full Sleeve" /> Full Sleeve</label>
+  </div>
+
+  <label>Payment Method:</label>
+  <div class="options-group">
+    <label><input type="radio" name="payment" value="Hand Cash" required /> Hand Cash</label>
+    <label><input type="radio" name="payment" value="bKash" /> bKash</label>
+    <label><input type="radio" name="payment" value="Nagad" /> Nagad</label>
+    <label><input type="radio" name="payment" value="Rocket" /> Rocket</label>
+  </div>
+
+  <label for="paymentNumber">Payment Number:</label>
+  <input type="tel" id="paymentNumber" name="paymentNumber" placeholder="e.g. 01XXXXXXXXX" />
+
+  <label for="signature">Signature:</label>
+  <input type="text" id="signature" name="signature" placeholder="Type your name as signature" required />
+
+  <button type="submit">Submit Order</button>
+</form>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    let data = {
+      Name: form.name.value,
+      Size: form.size.value,
+      JerseyNumber: form.number.value,
+      SleeveType: form.sleeve.value,
+      PaymentMethod: form.payment.value,
+      PaymentNumber: form.paymentNumber.value,
+      Signature: form.signature.value
+    };
+    alert('Thank you for your order!\n\n' + JSON.stringify(data, null, 2));
+    form.reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
